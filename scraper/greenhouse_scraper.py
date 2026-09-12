@@ -7,7 +7,7 @@ companies = ["stripe", "databricks", "anthropic", "airbnb", "figma", "asana"]
 today = date.today().isoformat()
 
 for company in companies:
-    url = f"https://boards-api.greenhouse.io/v1/boards/{company}/jobs"
+    url = url = f"https://boards-api.greenhouse.io/v1/boards/{company}/jobs?content=true"
     response = requests.get(url)
     data = response.json()
     jobs = data["jobs"]

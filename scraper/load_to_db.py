@@ -65,10 +65,10 @@ for filepath in files:
         date_id = get_or_create_date(job["first_published"])
 
         cur.execute("""
-            INSERT INTO job_postings_fact (job_id, title, company_id, location_id, date_id, absolute_url)
-            VALUES (%s, %s, %s, %s, %s, %s)
+            INSERT INTO job_postings_fact (job_id, title, company_id, location_id, date_id, absolute_url, description)
+            VALUES (%s, %s, %s, %s, %s, %s, %s)
             ON CONFLICT (job_id) DO NOTHING
-        """, (job["id"], job["title"], company_id, location_id, date_id, job["absolute_url"]))
+        """, (job["id"], job["title"], company_id, location_id, date_id, job["absolute_url"], job.get("content")))
 
         total_inserted += 1
 
